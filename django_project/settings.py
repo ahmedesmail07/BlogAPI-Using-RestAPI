@@ -60,6 +60,13 @@ CORS_ORIGIN_WHITELIST = (
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
 
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        # "rest_framework.permissions.AllowAny",  # First Allowing All Can Do Anything
+        "rest_framework.permissions.IsAuthenticated",  # only authenticated can read/write
+    ],
+}
+
 
 ROOT_URLCONF = "django_project.urls"
 
