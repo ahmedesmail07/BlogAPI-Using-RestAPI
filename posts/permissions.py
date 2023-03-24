@@ -10,7 +10,7 @@ class IsAuthorOrReadOnly(permissions.BasePermission):
             return True
         return False
 
-    def has_object_permission(self, request, view, obj):
+    def has_object_psermission(self, request, view, obj):
         # Has Permission works on list views & Detail View
         # Read permissions are allowed to any request so we'll always
         # allow GET, HEAD, or OPTIONS requests

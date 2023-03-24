@@ -37,11 +37,22 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Third Party
     "rest_framework",
     "corsheaders",
+    "rest_framework.authtoken",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
+    # Local Apps
     "accounts.apps.AccountsConfig",
     "posts.apps.PostsConfig",
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -62,8 +73,14 @@ CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        # "rest_framework.permissions.AllowAny",  # First Allowing All Can Do Anything
-        # "rest_framework.permissions.IsAuthenticated",  # only authenticated can read/write
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        # sessionAuth for power Browsable API & Ability of login/out
+        "rest_framework.authentication.SessionAuthentication",
+        # Token is used to power the user with multiple things like : they stored in client side
+        # Token Can Be used in multiple fron-ends and they have the same session id
+        "rest_framework.authentication.TokenAuthentication",
     ],
 }
 
@@ -81,10 +98,14 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.request",  # AllAuth
             ],
         },
     },
 ]
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 
 WSGI_APPLICATION = "django_project.wsgi.application"
 

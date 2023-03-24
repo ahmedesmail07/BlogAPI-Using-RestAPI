@@ -22,5 +22,9 @@ urlpatterns = [
     path(
         "api-auth/", include("rest_framework.urls")
     ),  # this is for login/out from the current api
+    path("api/v1/dj-rest-auth/", include("dj_rest_auth.urls")),
+    path(
+        "api/v1/dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")
+    ),
 ]
 # we included v1 in the path refers that this url path is for posts app and etc.,
