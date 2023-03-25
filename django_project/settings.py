@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "dj_rest_auth",
     "dj_rest_auth.registration",
+    "drf_spectacular",  # For Documnetation
     # Local Apps
     "accounts.apps.AccountsConfig",
     "posts.apps.PostsConfig",
@@ -82,6 +83,7 @@ REST_FRAMEWORK = {
         # Token Can Be used in multiple fron-ends and they have the same session id
         "rest_framework.authentication.TokenAuthentication",
     ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",  # For Documnetation
 }
 
 
@@ -163,3 +165,16 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "accounts.CustomUser"  # our custom from accounts/app
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Blog API Project",
+    "DESCRIPTION": "A sample blog to learn about DRF",
+    "VERSION": "1.0.0",
+    # That metadata will be returned as a doc
+}
+"""
+After Setup the above setting run the next command :
+python manage.py spectacular --file schema.yml
+This command is used for generate the schema as a standalone file 
+Then go to urls of the projectlevel and put the url path of the schema
+"""
