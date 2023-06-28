@@ -20,6 +20,8 @@ from drf_spectacular.views import (
     SpectacularSwaggerView,
     SpectacularRedocView,
 )
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -43,5 +45,5 @@ urlpatterns = [
         SpectacularSwaggerView.as_view(url_name="schema"),
         name="swagger-ui",
     ),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # we included v1 in the path refers that this url path is for posts app and etc.,
