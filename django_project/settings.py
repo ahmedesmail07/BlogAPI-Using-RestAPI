@@ -64,6 +64,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware', # for deployment
+    'django.middleware.common.CommonMiddleware', # for deployment
 ]
 CORS_ORIGIN_WHITELIST = (
     "http://localhost:3000",
@@ -180,3 +182,7 @@ Then go to urls of the projectlevel and put the url path of the schema
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+CORS_ALLOWED_ORIGINS = [
+    "https://drf-blog.azurewebsites.net",
+]
